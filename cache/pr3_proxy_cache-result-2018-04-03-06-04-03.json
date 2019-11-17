@@ -1,0 +1,152 @@
+{
+    "tests": [
+        {
+            "output": {
+                "cached_console": "cc -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer   -c -o bvtcache.o bvtcache.c\nmake: Warning: File 'simplecached.c' has modification time 6727 s in the future\ncc -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer   -c -o simplecached.o simplecached.c\nsimplecached.c: In function 'serve_requests':\nsimplecached.c:232:12: error: unused variable 'resmsg_size' [-Werror=unused-variable]\n    ssize_t resmsg_size = msgsnd(res_mq_id, cache_request, size, 0);\n            ^\ncc1: all warnings being treated as errors\n<builtin>: recipe for target 'simplecached.o' failed\nmake: *** [simplecached.o] Error 1\n",
+                "passfail": "failed",
+                "cached_returncode": 2
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_nvraeksf/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 53, in test_cached_compiles\n    self.assertEqual(p.returncode, 0, \"Your cached code did not compile cleanly.\")\nAssertionError: Your cached code did not compile cleanly.\n",
+            "description": "Cache Compilation Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": 2,
+                "proxy_console": "make: Warning: File 'webproxy.c' has modification time 6195 s in the future\ncc -Wall --std=gnu99 -g3 -Wno-format-security -Werror  -fsanitize=address -fno-omit-frame-pointer   -c -o webproxy.o webproxy.c\ncc -Wall --std=gnu99 -g3 -Wno-format-security -Werror  -fsanitize=address -fno-omit-frame-pointer   -c -o steque.o steque.c\ncc -Wall --std=gnu99 -g3 -Wno-format-security -Werror  -fsanitize=address -fno-omit-frame-pointer   -c -o handle_with_cache.o handle_with_cache.c\ncc -Wall --std=gnu99 -g3 -Wno-format-security -Werror  -fsanitize=address -fno-omit-frame-pointer   -c -o shm_channel.o shm_channel.c\nshm_channel.c: In function 'create_sema':\nshm_channel.c:65:39: error: 'O_RDWR' undeclared (first use in this function)\n     data_sema = sem_open(\"data_sema\", O_RDWR | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR, 0);\n                                       ^\nshm_channel.c:65:39: note: each undeclared identifier is reported only once for each function it appears in\nshm_channel.c:65:48: error: 'O_CREAT' undeclared (first use in this function)\n     data_sema = sem_open(\"data_sema\", O_RDWR | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR, 0);\n                                                ^\nshm_channel.c:65:58: error: 'O_EXCL' undeclared (first use in this function)\n     data_sema = sem_open(\"data_sema\", O_RDWR | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR, 0);\n                                                          ^\nshm_channel.c:65:66: error: 'S_IRUSR' undeclared (first use in this function)\n     data_sema = sem_open(\"data_sema\", O_RDWR | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR, 0);\n                                                                  ^\nshm_channel.c:65:76: error: 'S_IWUSR' undeclared (first use in this function)\n     data_sema = sem_open(\"data_sema\", O_RDWR | O_CREAT | O_EXCL, S_IRUSR | S_IWUSR, 0);\n                                                                            ^\n<builtin>: recipe for target 'shm_channel.o' failed\nmake: *** [shm_channel.o] Error 1\n",
+                "passfail": "failed"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_nvraeksf/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 68, in test_proxy_compiles\n    self.assertEqual(p.returncode, 0, \"Your proxy code did not compile cleanly.\")\nAssertionError: Your proxy code did not compile cleanly.\n",
+            "description": "Proxy Compilation Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": -1,
+                "cached_returncode": -1,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": -1,
+                "proxy_console": "\nException: cached server does not exist, cannot run test\n",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Test Cache supporting large segments"
+        },
+        {
+            "output": {
+                "proxy_returncode": -1,
+                "cached_returncode": -1,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": -1,
+                "proxy_console": "\nException: cached server does not exist, cannot run test\n\nException: cached server does not exist, cannot run test\n\nException: cached server does not exist, cannot run test\n\nException: cached server does not exist, cannot run test\n\nException: cached server does not exist, cannot run test\n",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Multi-threaded Cache test with simultaneous multi-threaded downloads (mixed file sizes)"
+        },
+        {
+            "output": {
+                "proxy_returncode": -1,
+                "cached_returncode": -1,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": -1,
+                "proxy_console": "\nException: cached server does not exist, cannot run test\n",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Cache Test with single threaded downloads"
+        },
+        {
+            "output": {
+                "proxy_returncode": -1,
+                "cached_returncode": -1,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": -1,
+                "proxy_console": "\nException: cached server does not exist, cannot run test\n\nException: cached server does not exist, cannot run test\n\nException: cached server does not exist, cannot run test\n\nException: cached server does not exist, cannot run test\n\nException: cached server does not exist, cannot run test\n",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Cache Test with simultaneous multi-threaded downloads (mixed file sizes)"
+        },
+        {
+            "output": {
+                "proxy_returncode": -1,
+                "cached_returncode": -1,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": -1,
+                "proxy_console": "\nException: cached server does not exist, cannot run test\n\nException: cached server does not exist, cannot run test\n\nException: cached server does not exist, cannot run test\n\nException: cached server does not exist, cannot run test\n\nException: cached server does not exist, cannot run test\n",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Cache Test with simultaneous multi-threaded downloads (small file sizes)"
+        },
+        {
+            "output": {
+                "proxy_returncode": -1,
+                "cached_returncode": -1,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": -1,
+                "proxy_console": "\nException: cached server does not exist, cannot run test\n\nException: cached server does not exist, cannot run test\n\nException: cached server does not exist, cannot run test\n\nException: cached server does not exist, cannot run test\n\nException: cached server does not exist, cannot run test\n",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Concurrent Download of Same File Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": -1,
+                "cached_returncode": -1,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": -1,
+                "proxy_console": "\nException: cached server does not exist, cannot run test\n",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Large File Transfer Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": -1,
+                "cached_returncode": -1,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": -1,
+                "proxy_console": "\nException: cached server does not exist, cannot run test\n",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Test Cache for multi-threading efficacy (or is it faster with more threads?)"
+        },
+        {
+            "output": {
+                "proxy_returncode": -1,
+                "cached_returncode": -1,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": -1,
+                "proxy_console": "\nException: cached server does not exist, cannot run test\n",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Non-Existent File Transfer Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": -1,
+                "cached_returncode": -1,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": -1,
+                "proxy_console": "\nException: cached server does not exist, cannot run test\n",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Small File Transfer Test."
+        }
+    ]
+}

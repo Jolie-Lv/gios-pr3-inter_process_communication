@@ -1,0 +1,152 @@
+{
+    "tests": [
+        {
+            "output": {
+                "cached_console": "",
+                "passfail": "passed",
+                "cached_returncode": 0
+            },
+            "traceback": "",
+            "description": "Cache Compilation Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": 0,
+                "proxy_console": "",
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Proxy Compilation Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": 1,
+                "cached_returncode": null,
+                "client_console": "./bvtclient -s localhost -p 8500 -t 2 -w workload-big.txt -r 16 -m udacious.log\n",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "***START - IPC INIT***\n**INIT-Shared Memory Pool**\n*INIT-Shared Memory Segment Queue*\n*SUCCESS-Shared Memory Segment Queue*\n*INIT-Shared Memory Segment Lock Mutex*\n*SUCCESS-Shared Memory Segment Lock Mutex*\n*INIT-Shared Memory Segment Initialization*\nShared Memory Segment ID - 0\nShared Memory Segment ID - 32769\n*INIT-Shared Memory Segment Initialization\n**SUCCESS-Shared Memory Pool**\n**INIT-Synchronization Queue Pool**\n**SUCCESS-Synchronization Queue Pool**\n***SUCCESS - IPC INIT***\n**INIT-Shared Memory Segment**\n**INIT-Shared Memory Segment**\n=================================================================\n==119==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x60300000d7c8 at pc 0x0000004b2756 bp 0x7f922bdfdda0 sp 0x7f922bdfdd90\nWRITE of size 16 at 0x60300000d7c8 thread T2\n    #0 0x4b2755 in handle_with_cache /home/vmuser_xgjyevsu/workspace/handle_with_cache.c:175\n    #1 0x4b4207 in worker_main /home/vmuser_xgjyevsu/workspace/gfserver.c:174\n    #2 0x7f922f8196b9 in start_thread (/lib/x86_64-linux-gnu/libpthread.so.0+0x76b9)\n    #3 0x7f922ee2c82c in clone (/lib/x86_64-linux-gnu/libc.so.6+0x10682c)\n\n0x60300000d7c8 is located 0 bytes to the right of 24-byte region [0x60300000d7b0,0x60300000d7c8)\nallocated by thread T2 here:\n    #0 0x480cb2 in __interceptor_malloc (/home/vmuser_xgjyevsu/workspace/webproxy+0x480cb2)\n    #1 0x4b2725 in handle_with_cache /home/vmuser_xgjyevsu/workspace/handle_with_cache.c:174\n    #2 0x4b4207 in worker_main /home/vmuser_xgjyevsu/workspace/gfserver.c:174\n    #3 0x7f922f8196b9 in start_thread (/lib/x86_64-linux-gnu/libpthread.so.0+0x76b9)\n\nThread T2 created by T0 here:\n    #0 0x41e843 in __interceptor_pthread_create (/home/vmuser_xgjyevsu/workspace/webproxy+0x41e843)\n    #1 0x4b4f8a in gfserver_serve /home/vmuser_xgjyevsu/workspace/gfserver.c:275\n    #2 0x4b1242 in main /home/vmuser_xgjyevsu/workspace/webproxy.c:160\n    #3 0x7f922ed4682f in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x2082f)\n\nSUMMARY: AddressSanitizer: heap-buffer-overflow /home/vmuser_xgjyevsu/workspace/handle_with_cache.c:175 handle_with_cache\nShadow bytes around the buggy address:\n  0x0c067fff9aa0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x0c067fff9ab0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x0c067fff9ac0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x0c067fff9ad0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x0c067fff9ae0: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n=>0x0c067fff9af0: fa fa fa fa fa fa 00 00 00[fa]fa fa fd fd fd fd\n  0x0c067fff9b00: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x0c067fff9b10: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x0c067fff9b20: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x0c067fff9b30: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x0c067fff9b40: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Heap right redzone:      fb\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack partial redzone:   f4\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n==119==ABORTING\n\nException: The proxy terminated during testing {'client workload file': '/1047589 1047589\\n/1048576 1048576\\n/1049563 1049563\\n/5241893 5241893\\n/5242880 5242880\\n/5243867 5243867\\n', 'cache': ['./bvtcached', '-c', 'workload-big.txt', '-t', '2'], 'proxy': ['./webproxy', '-s', 'localhost:8000', '-t', '2', '-z', '65536', '-n', '2', '-p', '8500'], 'cache workload file': '/1047589 1047589\\n/1048576 1048576\\n/1049563 1049563\\n/5241893 5241893\\n/5242880 5242880\\n/5243867 5243867\\n', 'client': ['./bvtclient', '-w', 'workload-big.txt', '-t', '2', '-r', '16', '-p', '8500']}\n",
+                "cached_console": "**INIT-Thread Constructs**\n*INIT-Cache Queue*\n*SUCCESS-Cache Queue*\n*INIT-Cache Queue Lock Mutex*\n*SUCCESS-Cache Queue Lock Mutex*\n*INIT-Data Lock Mutex*\n*SUCCESS-Data Lock Mutex*\n**SUCCESS-Thread Constructs**\n**INIT-Thread Pool**\nCreating thread: 0\n*INIT-Thread ID - 0*\nCreating thread: 1\n*INIT-Thread ID - 1*\n**SUCCESS-Thread Pool**\n**INIT-Synchronization Queue Pool**\n**SUCCESS-Synchronization Queue Pool**\n**INIT-Cache Transfer**\n**INIT-Cache Transfer**\n"
+            },
+            "traceback": "",
+            "description": "Test Cache supporting large segments"
+        },
+        {
+            "output": {
+                "proxy_returncode": 1,
+                "cached_returncode": null,
+                "client_console": "Log Tail:\nconnect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\n./bvtclient -s localhost -p 8500 -t 8 -w workload-mixed.txt -r 16 -m udacious.log\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\n./bvtclient -s localhost -p 8500 -t 8 -w workload-mixed.txt -r 16 -m udacious.log\nfailed to send: Broken pipe\nfailed to send: Broken pipe\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFile /1024 (expected size = 1024) download failure. failure status -4, failure comment _send failed\nFile /1047589 (expected size = 1047589) download failure. failure status -4, failure comment _send failed\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\n./bvtclient -s localhost -p 8500 -t 8 -w workload-mixed.txt -r 16 -m udacious.log\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\nFailed to connect.  Trying again....\n",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "Log Tail:\n\\n', 'cache': ['./bvtcached', '-c', 'workload-mixed.txt', '-t', '8'], 'proxy': ['./webproxy', '-s', 'localhost:8000', '-t', '8', '-z', '4096', '-n', '8', '-p', '8500'], 'cache workload file': '/412 412\\n/1047589 1047589\\n/512 512\\n/1048576 1048576\\n/612 612\\n/1049563 1049563\\n/924 924\\n/5241893 5241893\\n/1024 1024\\n/5242880 5242880\\n/1124 1124\\n/5243867 5243867\\n', 'client': ['./bvtclient', '-w', 'workload-mixed.txt', '-t', '8', '-r', '16', '-p', '8500']}\n\nException: The proxy terminated during testing {'client workload file': '/412 412\\n/1047589 1047589\\n/512 512\\n/1048576 1048576\\n/612 612\\n/1049563 1049563\\n/924 924\\n/5241893 5241893\\n/1024 1024\\n/5242880 5242880\\n/1124 1124\\n/5243867 5243867\\n', 'cache': ['./bvtcached', '-c', 'workload-mixed.txt', '-t', '8'], 'proxy': ['./webproxy', '-s', 'localhost:8000', '-t', '8', '-z', '4096', '-n', '8', '-p', '8500'], 'cache workload file': '/412 412\\n/1047589 1047589\\n/512 512\\n/1048576 1048576\\n/612 612\\n/1049563 1049563\\n/924 924\\n/5241893 5241893\\n/1024 1024\\n/5242880 5242880\\n/1124 1124\\n/5243867 5243867\\n', 'client': ['./bvtclient', '-w', 'workload-mixed.txt', '-t', '8', '-r', '16', '-p', '8500']}\n\nException: The proxy terminated during testing {'client workload file': '/412 412\\n/1047589 1047589\\n/512 512\\n/1048576 1048576\\n/612 612\\n/1049563 1049563\\n/924 924\\n/5241893 5241893\\n/1024 1024\\n/5242880 5242880\\n/1124 1124\\n/5243867 5243867\\n', 'cache': ['./bvtcached', '-c', 'workload-mixed.txt', '-t', '8'], 'proxy': ['./webproxy', '-s', 'localhost:8000', '-t', '8', '-z', '4096', '-n', '8', '-p', '8500'], 'cache workload file': '/412 412\\n/1047589 1047589\\n/512 512\\n/1048576 1048576\\n/612 612\\n/1049563 1049563\\n/924 924\\n/5241893 5241893\\n/1024 1024\\n/5242880 5242880\\n/1124 1124\\n/5243867 5243867\\n', 'client': ['./bvtclient', '-w', 'workload-mixed.txt', '-t', '8', '-r', '16', '-p', '8500']}\n",
+                "cached_console": "Log Tail:\nche Transfer**\n**INIT-Cache Transfer**\n*INIT-Thread ID - 7*\n**SUCCESS-Thread Pool**\n**INIT-Synchronization Queue Pool**\n**SUCCESS-Synchronization Queue Pool**\n**INIT-Cache Transfer**\n**INIT-Thread Constructs**\n*INIT-Cache Queue*\n*SUCCESS-Cache Queue*\n*INIT-Cache Queue Lock Mutex*\n*SUCCESS-Cache Queue Lock Mutex*\n*INIT-Data Lock Mutex*\n*SUCCESS-Data Lock Mutex*\n**SUCCESS-Thread Constructs**\n**INIT-Thread Pool**\nCreating thread: 0\n*INIT-Thread ID - 0*\nCreating thread: 1\n*INIT-Thread ID - 1*\nCreating thread: 2\n*INIT-Thread ID - 2*\nCreating thread: 3\n*INIT-Thread ID - 3*\nCreating thread: 4\n*INIT-Thread ID - 4*\nCreating thread: 5\n**INIT-Cache Transfer**\n*INIT-Thread ID - 5*\nCreating thread: 6\n*INIT-Thread ID - 6*\nCreating thread: 7\n*INIT-Thread ID - 7*\n**SUCCESS-Thread Pool**\n**INIT-Synchronization Queue Pool**\n**SUCCESS-Synchronization Queue Pool**\n**INIT-Cache Transfer**\n**INIT-Cache Transfer**\n**INIT-Cache Transfer**\n**INIT-Cache Transfer**\n**INIT-Cache Transfer**\n**INIT-Cache Transfer**\n**INIT-Cache Transfer**\n**INIT-Thread Constructs**\n*INIT-Cache Queue*\n*SUCCESS-Cache Queue*\n*INIT-Cache Queue Lock Mutex*\n*SUCCESS-Cache Queue Lock Mutex*\n*INIT-Data Lock Mutex*\n*SUCCESS-Data Lock Mutex*\n**SUCCESS-Thread Constructs**\n**INIT-Thread Pool**\nCreating thread: 0\n*INIT-Thread ID - 0*\nCreating thread: 1\n*INIT-Thread ID - 1*\nCreating thread: 2\n*INIT-Thread ID - 2*\nCreating thread: 3\n*INIT-Thread ID - 3*\nCreating thread: 4\n*INIT-Thread ID - 4*\nCreating thread: 5\n*INIT-Thread ID - 5*\nCreating thread: 6\n*INIT-Thread ID - 6*\nCreating thread: 7\n*INIT-Thread ID - 7*\n**SUCCESS-Thread Pool**\n**INIT-Synchronization Queue Pool**\n**SUCCESS-Synchronization Queue Pool**\n**INIT-Cache Transfer**\n**INIT-Cache Transfer**\n**INIT-Cache Transfer**\n**INIT-Cache Transfer**\n**INIT-Cache Transfer**\n**INIT-Cache Transfer**\n**INIT-Cache Transfer**\n**INIT-Cache Transfer**\n"
+            },
+            "traceback": "",
+            "description": "Multi-threaded Cache test with simultaneous multi-threaded downloads (mixed file sizes)"
+        },
+        {
+            "output": {
+                "proxy_returncode": 1,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Cache Test with single threaded downloads"
+        },
+        {
+            "output": {
+                "proxy_returncode": 1,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Cache Test with simultaneous multi-threaded downloads (mixed file sizes)"
+        },
+        {
+            "output": {
+                "proxy_returncode": 1,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Cache Test with simultaneous multi-threaded downloads (small file sizes)"
+        },
+        {
+            "output": {
+                "proxy_returncode": 1,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Concurrent Download of Same File Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": 1,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Large File Transfer Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": 1,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Test Cache for multi-threading efficacy (or is it faster with more threads?)"
+        },
+        {
+            "output": {
+                "proxy_returncode": 1,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Non-Existent File Transfer Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": 1,
+                "cached_returncode": null,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": null,
+                "proxy_console": "",
+                "cached_console": ""
+            },
+            "traceback": "",
+            "description": "Small File Transfer Test."
+        }
+    ]
+}

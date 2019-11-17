@@ -1,0 +1,109 @@
+{
+    "tests": [
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": 0,
+                "proxy_console": "start of handle_with_curl\nserver - localhost:8035\npath - /not-there1\naddress- localhost:8035/not-there1\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8035\npath - /not-there0\naddress- localhost:8035/not-there0\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\n\n=================================================================\n==77==ERROR: LeakSanitizer: detected memory leaks\n\nDirect leak of 382 byte(s) in 2 object(s) allocated from:\n    #0 0x7f3e57c3c961 in realloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98961)\n    #1 0x404da0 in writedata /home/vmuser_mnatvzqu/workspace/handle_with_curl.c:34\n    #2 0x7f3e5772dae1  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x15ae1)\n\nSUMMARY: AddressSanitizer: 382 byte(s) leaked in 2 allocation(s).\n"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_mnatvzqu/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 317, in test_nonexistent_files\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 265, in go\n    self.assertFalse(recv_failed, \"At least one of the requests was not fulfilled or it received an incorrect status. {}\".format(recv_failed_list))\nAssertionError: At least one of the requests was not fulfilled or it received an incorrect status. [' /notthere.png', ' /notthere.png']\n",
+            "description": "Tests that the server properly handles requests for non-existent files"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": 0,
+                "proxy_console": "start of handle_with_curl\nserver - localhost:8360\npath - /10mb-sample-file-1.txt\naddress- localhost:8360/10mb-sample-file-1.txt\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\n\n=================================================================\n==90==ERROR: LeakSanitizer: detected memory leaks\n\nDirect leak of 54 byte(s) in 1 object(s) allocated from:\n    #0 0x7f0c895cf961 in realloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98961)\n    #1 0x404da0 in writedata /home/vmuser_mnatvzqu/workspace/handle_with_curl.c:34\n    #2 0x7f0c890c0ae1  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x15ae1)\n\nSUMMARY: AddressSanitizer: 54 byte(s) leaked in 1 allocation(s).\n"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_mnatvzqu/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 304, in test_ok_with_long_message\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 266, in go\n    self.assertFalse(incorrect_contents, \"Incorrect content detected in files: {}\".format(incorrect_contents_list))\nAssertionError: Incorrect content detected in files: [' /10mb-sample-file-0.mpg']\n",
+            "description": "Tests that the server properly sends an OK response and a long message."
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": 0,
+                "proxy_console": "Log Tail:\n_with_curl\nserver - localhost:8343\npath - /1kb-sample-file-3.jpg\naddress- localhost:8343/1kb-sample-file-3.jpg\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /1kb-sample-file-4.png\naddress- localhost:8343/1kb-sample-file-4.png\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /notthere.png\naddress- localhost:8343/notthere.png\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /paraglider.jpg\naddress- localhost:8343/paraglider.jpg\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /road.jpg\naddress- localhost:8343/road.jpg\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /yellowstone.jpg\naddress- localhost:8343/yellowstone.jpg\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /moranabovejacksonlake.jpg\naddress- localhost:8343/moranabovejacksonlake.jpg\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /1kb-sample-file-0.png\naddress- localhost:8343/1kb-sample-file-0.png\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /1kb-sample-file-1.html\naddress- localhost:8343/1kb-sample-file-1.html\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /1kb-sample-file-2.png\naddress- localhost:8343/1kb-sample-file-2.png\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /1kb-sample-file-3.jpg\naddress- localhost:8343/1kb-sample-file-3.jpg\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /1kb-sample-file-4.png\naddress- localhost:8343/1kb-sample-file-4.png\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /notthere.png\naddress- localhost:8343/notthere.png\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /paraglider.jpg\naddress- localhost:8343/paraglider.jpg\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /road.jpg\naddress- localhost:8343/road.jpg\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /yellowstone.jpg\naddress- localhost:8343/yellowstone.jpg\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /moranabovejacksonlake.jpg\naddress- localhost:8343/moranabovejacksonlake.jpg\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /1kb-sample-file-0.png\naddress- localhost:8343/1kb-sample-file-0.png\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /1kb-sample-file-1.html\naddress- localhost:8343/1kb-sample-file-1.html\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /1kb-sample-file-2.png\naddress- localhost:8343/1kb-sample-file-2.png\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /1kb-sample-file-3.jpg\naddress- localhost:8343/1kb-sample-file-3.jpg\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /1kb-sample-file-4.png\naddress- localhost:8343/1kb-sample-file-4.png\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /notthere.png\naddress- localhost:8343/notthere.png\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /paraglider.jpg\naddress- localhost:8343/paraglider.jpg\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /road.jpg\naddress- localhost:8343/road.jpg\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /yellowstone.jpg\naddress- localhost:8343/yellowstone.jpg\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /moranabovejacksonlake.jpg\naddress- localhost:8343/moranabovejacksonlake.jpg\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /1kb-sample-file-0.png\naddress- localhost:8343/1kb-sample-file-0.png\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /1kb-sample-file-1.html\naddress- localhost:8343/1kb-sample-file-1.html\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /1kb-sample-file-2.png\naddress- localhost:8343/1kb-sample-file-2.png\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /1kb-sample-file-3.jpg\naddress- localhost:8343/1kb-sample-file-3.jpg\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /1kb-sample-file-4.png\naddress- localhost:8343/1kb-sample-file-4.png\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /notthere.png\naddress- localhost:8343/notthere.png\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /paraglider.jpg\naddress- localhost:8343/paraglider.jpg\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /road.jpg\naddress- localhost:8343/road.jpg\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nstart of handle_with_curl\nserver - localhost:8343\npath - /yellowstone.jpg\naddress- localhost:8343/yellowstone.jpg\nafter curl_easy_init\nstart processing\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\nsuccess in curl_easy_perform\nsend OK\nwrite success\ntransfer success\n\n=================================================================\n==125==ERROR: LeakSanitizer: detected memory leaks\n\nDirect leak of 473272 byte(s) in 128 object(s) allocated from:\n    #0 0x7f5515c6b961 in realloc (/usr/lib/x86_64-linux-gnu/libasan.so.2+0x98961)\n    #1 0x404da0 in writedata /home/vmuser_mnatvzqu/workspace/handle_with_curl.c:34\n    #2 0x7f551575cae1  (/usr/lib/x86_64-linux-gnu/libcurl.so.4+0x15ae1)\n\nSUMMARY: AddressSanitizer: 473272 byte(s) leaked in 128 allocation(s).\n"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_mnatvzqu/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 380, in test_proxy_high_stress\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 265, in go\n    self.assertFalse(recv_failed, \"At least one of the requests was not fulfilled or it received an incorrect status. {}\".format(recv_failed_list))\nAssertionError: At least one of the requests was not fulfilled or it received an incorrect status. [' /notthere.png', ' /notthere.png', ' /notthere.png', ' /notthere.png', ' /notthere.png', ' /notthere.png', ' /notthere.png', ' /notthere.png', ' /notthere.png', ' /notthere.png', ' /notthere.png', ' /notthere.png', ' /notthere.png']\n",
+            "description": "Test with 3:1 ratio client threads to proxy threads"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": 0,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_mnatvzqu/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 354, in test_proxy_multithreaded\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 265, in go\n    self.assertFalse(recv_failed, \"At least one of the requests was not fulfilled or it received an incorrect status. {}\".format(recv_failed_list))\nAssertionError: At least one of the requests was not fulfilled or it received an incorrect status. [' /notthere.png']\n",
+            "description": "Test with equal number of client and proxy threads"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": 0,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_mnatvzqu/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 279, in test_proxy_one_at_a_time\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 265, in go\n    self.assertFalse(recv_failed, \"At least one of the requests was not fulfilled or it received an incorrect status. {}\".format(recv_failed_list))\nAssertionError: At least one of the requests was not fulfilled or it received an incorrect status. [' /notthere.png']\n",
+            "description": "Tests the proxy behaves as expected when one request is made at a time."
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": 0,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_mnatvzqu/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 342, in test_proxy_simul_clients\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 265, in go\n    self.assertFalse(recv_failed, \"At least one of the requests was not fulfilled or it received an incorrect status. {}\".format(recv_failed_list))\nAssertionError: At least one of the requests was not fulfilled or it received an incorrect status. [' /notthere.png']\n",
+            "description": "Tests the proxy behaves as expected when multiple requests are made simultaneously."
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": 0,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_mnatvzqu/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 368, in test_proxy_stress\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 265, in go\n    self.assertFalse(recv_failed, \"At least one of the requests was not fulfilled or it received an incorrect status. {}\".format(recv_failed_list))\nAssertionError: At least one of the requests was not fulfilled or it received an incorrect status. [' /notthere.png', ' /notthere.png', ' /notthere.png', ' /notthere.png', ' /notthere.png', ' /notthere.png']\n",
+            "description": "Test with 2:1 ratio client threads to proxy threads"
+        },
+        {
+            "output": {
+                "proxy_returncode": 0,
+                "proxy_console": "cc -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer   -c -o webproxy.o webproxy.c\ncc -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer   -c -o steque.o steque.c\ncc -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer   -c -o gfserver.o gfserver.c\nmake: Warning: File 'handle_with_curl.c' has modification time 7081 s in the future\ncc -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer   -c -o handle_with_curl.o handle_with_curl.c\ncc -o webproxy -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer  webproxy.o steque.o gfserver.o handle_with_curl.o -lpthread -L/usr/lib/x86_64-linux-gnu -lcurl\nmake: warning:  Clock skew detected.  Your build may be incomplete.\n",
+                "passfail": "passed"
+            },
+            "traceback": "",
+            "description": "Proxy Compilation Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": null,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "passed",
+                "client_returncode": 0,
+                "proxy_console": ""
+            },
+            "traceback": "",
+            "description": "Tests that the server properly sends an OK response and a short message."
+        }
+    ]
+}

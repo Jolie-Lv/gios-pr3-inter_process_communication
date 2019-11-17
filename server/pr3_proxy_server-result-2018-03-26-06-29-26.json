@@ -1,0 +1,109 @@
+{
+    "tests": [
+        {
+            "output": {
+                "proxy_returncode": 2,
+                "proxy_console": "make: Warning: File 'webproxy.c' has modification time 5980 s in the future\ncc -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer   -c -o webproxy.o webproxy.c\ncc -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer   -c -o steque.o steque.c\ncc -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer   -c -o gfserver.o gfserver.c\ncc -Wall --std=gnu99 -g3 -Wno-format-security -Werror -fsanitize=address -fno-omit-frame-pointer   -c -o handle_with_curl.o handle_with_curl.c\nhandle_with_curl.c:20:0: error: \"CURL_ERROR_SIZE\" redefined [-Werror]\n #define CURL_ERROR_SIZE (100)\n ^\nIn file included from handle_with_curl.c:1:0:\n/usr/include/curl/curl.h:678:0: note: this is the location of the previous definition\n #define CURL_ERROR_SIZE 256\n ^\nhandle_with_curl.c: In function 'handle_with_curl':\nhandle_with_curl.c:56:17: error: unused variable 'statbuf' [-Werror=unused-variable]\n     struct stat statbuf;\n                 ^\nhandle_with_curl.c:99:9: error: 'file_len' may be used uninitialized in this function [-Werror=maybe-uninitialized]\n         gfs_sendheader(ctx, GF_OK, file_len);\n         ^\ncc1: all warnings being treated as errors\n<builtin>: recipe for target 'handle_with_curl.o' failed\nmake: *** [handle_with_curl.o] Error 1\n",
+                "passfail": "failed"
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_nrkfcgda/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 32, in test_proxy_compiles\n    self.assertEqual(p.returncode, 0, \"Your proxy code did not compile cleanly.\")\nAssertionError: Your proxy code did not compile cleanly.\n",
+            "description": "Proxy Compilation Test"
+        },
+        {
+            "output": {
+                "proxy_returncode": -1,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": -1,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_nrkfcgda/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 317, in test_nonexistent_files\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 190, in go\n    self.assertTrue(self.check_for_app(proxy_args[0]), \"proxy server does not exist, cannot run test\")\nAssertionError: proxy server does not exist, cannot run test\n",
+            "description": "Tests that the server properly handles requests for non-existent files"
+        },
+        {
+            "output": {
+                "proxy_returncode": -1,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": -1,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_nrkfcgda/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 304, in test_ok_with_long_message\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 190, in go\n    self.assertTrue(self.check_for_app(proxy_args[0]), \"proxy server does not exist, cannot run test\")\nAssertionError: proxy server does not exist, cannot run test\n",
+            "description": "Tests that the server properly sends an OK response and a long message."
+        },
+        {
+            "output": {
+                "proxy_returncode": -1,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": -1,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_nrkfcgda/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 291, in test_ok_with_short_message\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 190, in go\n    self.assertTrue(self.check_for_app(proxy_args[0]), \"proxy server does not exist, cannot run test\")\nAssertionError: proxy server does not exist, cannot run test\n",
+            "description": "Tests that the server properly sends an OK response and a short message."
+        },
+        {
+            "output": {
+                "proxy_returncode": -1,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": -1,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_nrkfcgda/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 380, in test_proxy_high_stress\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 190, in go\n    self.assertTrue(self.check_for_app(proxy_args[0]), \"proxy server does not exist, cannot run test\")\nAssertionError: proxy server does not exist, cannot run test\n",
+            "description": "Test with 3:1 ratio client threads to proxy threads"
+        },
+        {
+            "output": {
+                "proxy_returncode": -1,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": -1,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_nrkfcgda/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 354, in test_proxy_multithreaded\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 190, in go\n    self.assertTrue(self.check_for_app(proxy_args[0]), \"proxy server does not exist, cannot run test\")\nAssertionError: proxy server does not exist, cannot run test\n",
+            "description": "Test with equal number of client and proxy threads"
+        },
+        {
+            "output": {
+                "proxy_returncode": -1,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": -1,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_nrkfcgda/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 279, in test_proxy_one_at_a_time\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 190, in go\n    self.assertTrue(self.check_for_app(proxy_args[0]), \"proxy server does not exist, cannot run test\")\nAssertionError: proxy server does not exist, cannot run test\n",
+            "description": "Tests the proxy behaves as expected when one request is made at a time."
+        },
+        {
+            "output": {
+                "proxy_returncode": -1,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": -1,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_nrkfcgda/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 342, in test_proxy_simul_clients\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 190, in go\n    self.assertTrue(self.check_for_app(proxy_args[0]), \"proxy server does not exist, cannot run test\")\nAssertionError: proxy server does not exist, cannot run test\n",
+            "description": "Tests the proxy behaves as expected when multiple requests are made simultaneously."
+        },
+        {
+            "output": {
+                "proxy_returncode": -1,
+                "server_returncode": 0,
+                "client_console": "",
+                "passfail": "failed",
+                "client_returncode": -1,
+                "proxy_console": ""
+            },
+            "traceback": "Traceback (most recent call last):\n  File \"/home/vmuser_nrkfcgda/gios.py\", line 249, in func_wrapper\n    ans = func(self)\n  File \"run.py\", line 368, in test_proxy_stress\n    self.go(num_client_threads, num_proxy_threads, delay, num_requests, workload_file, answer_log)\n  File \"run.py\", line 190, in go\n    self.assertTrue(self.check_for_app(proxy_args[0]), \"proxy server does not exist, cannot run test\")\nAssertionError: proxy server does not exist, cannot run test\n",
+            "description": "Test with 2:1 ratio client threads to proxy threads"
+        }
+    ]
+}

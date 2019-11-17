@@ -1,0 +1,3 @@
+/Users/abhisheksurya/CS6200_GIOS/gios-spr-2018-pr3/server/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/abhisheksurya/CS6200_GIOS/gios-spr-2018-pr3/server/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/abhisheksurya/CS6200_GIOS/gios-spr-2018-pr3/server/cmake-build-debug/CMakeFiles/server.dir
